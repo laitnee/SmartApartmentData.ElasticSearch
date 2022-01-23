@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApartmentData.ElasticSearch.WebAPI", "SmartApartmentData.ElasticSearch.WebAPI\SmartApartmentData.ElasticSearch.WebAPI.csproj", "{3B54BAE4-05AF-4D23-AA86-523D7BC1E2C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApartmentData.ElasticSearch.Domain", "SmartApartmentData.ElasticSearch.Domain\SmartApartmentData.ElasticSearch.Domain.csproj", "{DB911D0F-5712-42C1-9251-CF608DA30842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApartmentData.ElasticSearch.Infrastructure", "SmartApartmentData.ElasticSearch.Infrastructure\SmartApartmentData.ElasticSearch.Infrastructure.csproj", "{FF2F27BA-FA5A-4CE4-AB4D-C6A38D1B11CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApartmentData.ElasticSearch.Application", "SmartApartmentData.ElasticSearch.Application\SmartApartmentData.ElasticSearch.Application.csproj", "{5DD3E65E-F7EB-4A8C-8B52-421AB631EF94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartApartmentData.ElasticSearch.Test", "SmartApartmentData.ElasticSearch.Test\SmartApartmentData.ElasticSearch.Test.csproj", "{95C57485-C040-45A9-9EE5-08D2528CE4DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B54BAE4-05AF-4D23-AA86-523D7BC1E2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B54BAE4-05AF-4D23-AA86-523D7BC1E2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B54BAE4-05AF-4D23-AA86-523D7BC1E2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B54BAE4-05AF-4D23-AA86-523D7BC1E2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB911D0F-5712-42C1-9251-CF608DA30842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB911D0F-5712-42C1-9251-CF608DA30842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB911D0F-5712-42C1-9251-CF608DA30842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB911D0F-5712-42C1-9251-CF608DA30842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2F27BA-FA5A-4CE4-AB4D-C6A38D1B11CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2F27BA-FA5A-4CE4-AB4D-C6A38D1B11CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2F27BA-FA5A-4CE4-AB4D-C6A38D1B11CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2F27BA-FA5A-4CE4-AB4D-C6A38D1B11CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD3E65E-F7EB-4A8C-8B52-421AB631EF94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD3E65E-F7EB-4A8C-8B52-421AB631EF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD3E65E-F7EB-4A8C-8B52-421AB631EF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD3E65E-F7EB-4A8C-8B52-421AB631EF94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C57485-C040-45A9-9EE5-08D2528CE4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C57485-C040-45A9-9EE5-08D2528CE4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C57485-C040-45A9-9EE5-08D2528CE4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C57485-C040-45A9-9EE5-08D2528CE4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
