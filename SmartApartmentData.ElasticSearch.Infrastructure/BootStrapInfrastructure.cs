@@ -1,5 +1,23 @@
-﻿namespace SmartApartmentData.ElasticSearch.Infrastructure;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Nest;
+using SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch;
 
-public class Class1
+namespace SmartApartmentData.ElasticSearch.Infrastructure;
+
+public static class BootStrapInfrastructure
 {
+    public static void AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
+    {
+        AddElasticSearch(service, configuration);
+        service.AddTransient<IESService, ESService>();
+    }
+    private static void AddElasticSearch(IServiceCollection service, IConfiguration configuration)
+    {
+        var settings = new ConnectionSettings(new Uri(configuration["ElasticsearchSettings:uri"]));
+
+        var client = new ElasticClient(settings);
+
+        service.AddSingleton<IElasticClient>(client);
+    }
 }

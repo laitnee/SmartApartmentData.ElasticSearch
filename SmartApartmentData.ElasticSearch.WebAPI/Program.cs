@@ -1,20 +1,18 @@
+using SmartApartmentData.ElasticSearch.Infrastructure;
 using SmartApartmentData.ElasticSearch.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Configure Services
 
-var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+builder.Services.ConfigureLogs();
 
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{env}.json", optional: true)
-    .Build();
-
-builder.Services.ConfigureLogs(configuration, env);
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwagger();
 
 #endregion

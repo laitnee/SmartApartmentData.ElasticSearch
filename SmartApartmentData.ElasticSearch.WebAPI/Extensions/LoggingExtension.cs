@@ -7,8 +7,15 @@ namespace SmartApartmentData.ElasticSearch.WebAPI.Extensions;
 
 public static class LoggingExtension
 {
-    public static void ConfigureLogs(this IServiceCollection service, IConfiguration configuration, string env)
+    public static void ConfigureLogs(this IServiceCollection service)
     {
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env}.json", optional: true)
+            .Build();
+
         Log.Logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()

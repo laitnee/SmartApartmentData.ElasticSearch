@@ -1,9 +1,10 @@
 using Microsoft.Extensions.Logging;
 using Nest;
+using SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch.Mapping;
 
 namespace SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch.Indices;
 
-public abstract class IndexDefinition<T> : IIndexDefinition<T>
+public abstract class IndexDefinition<T> : IIndexDefinition where T : IndexItem
 {
     private readonly ILogger logger;
     public IndexDefinition(ILogger logger)
@@ -17,7 +18,7 @@ public abstract class IndexDefinition<T> : IIndexDefinition<T>
 
     public abstract Task DeleteIndexAsync(IElasticClient client);
 
-    public virtual async Task AddDocumentToIndexAsync<T>(IElasticClient client, List<T> documents) where T: class
+    public virtual async Task AddDocumentToIndexAsync<T>(IElasticClient client, List<T> documents) where T: IndexItem
     {
         if (documents.Any())
         {
