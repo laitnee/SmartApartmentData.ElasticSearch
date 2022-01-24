@@ -20,7 +20,7 @@ public static class LoggingExtension
 
     public static ElasticsearchSinkOptions ConfigureEls(IConfiguration configuration, string env)
     {
-        return new ElasticsearchSinkOptions(new Uri(configuration["ELKConfiguration:Uri"])){
+        return new ElasticsearchSinkOptions(new Uri(configuration["ELK_local_Configuration:Uri"])){
             AutoRegisterTemplate = true,
             IndexFormat = $"{Assembly.GetExecutingAssembly().GetName()?.Name?.ToLower()}-{env.ToLower().Replace(".","-")}-{DateTime.UtcNow:yyyy-MM}"
         };
