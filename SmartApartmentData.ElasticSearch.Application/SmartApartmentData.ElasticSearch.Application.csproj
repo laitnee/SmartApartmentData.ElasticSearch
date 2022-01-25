@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SmartApartmentData.ElasticSearch.Domain\SmartApartmentData.ElasticSearch.Domain.csproj" />
+      <ProjectReference Include="..\SmartApartmentData.ElasticSearch.Infrastructure\SmartApartmentData.ElasticSearch.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

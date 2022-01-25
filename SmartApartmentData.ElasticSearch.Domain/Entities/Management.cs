@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace SmartApartmentData.ElasticSearch.Domain.Entities;
 
-public class Management
+public class Management : BaseEntity
 {
     [JsonPropertyName("mgmtID")]
     public int ManagementID { get; set; }

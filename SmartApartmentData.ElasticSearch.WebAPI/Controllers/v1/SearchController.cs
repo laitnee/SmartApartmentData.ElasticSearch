@@ -1,4 +1,9 @@
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Mvc;
+using SmartApartmentData.ElasticSearch.Application.Models;
+using SmartApartmentData.ElasticSearch.Application.Models.Requests;
+using SmartApartmentData.ElasticSearch.Application.Models.Responses;
+using SmartApartmentData.ElasticSearch.Application.Services;
 using SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch;
 using SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch.Indices;
 
@@ -7,19 +12,28 @@ namespace SmartApartmentData.ElasticSearch.WebAPI.Controllers.v1;
 public class SearchController : BaseController
 {
     private readonly ILogger<SearchController> logger;
-    private readonly IESService eSsvc;
+    
+    private readonly ISearchService searchSvc;
 
-    public SearchController(ILogger<SearchController> logger, IESService ESsvc)
+    public SearchController(ILogger<SearchController> logger, ISearchService searchSvc)
     {
         this.logger = logger;
-        eSsvc = ESsvc;
+        this.searchSvc = searchSvc;
     }
-
+    
+    /// <summary>
+    ///     Returns key value pair of type and record that match search phrase
+    /// </summary>
+    /// <remarks>
+    ///     This endpoint will return 25 records by default.
+    /// </remarks>
+    /// <param name="query"></param>
+    /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> IndexMyGuy()
+    [Produces("application/json")]
+    public async Task<ActionResult<IResult<List<Dictionary<string,AutoCompleteResponse>>>>> AutoComplete([FromQuery]AutoCompleteSearchRequest request)
     {
-        logger.LogInformation("Welcome to .net apps");
-        await eSsvc.CreateIndexAsync<PropertyIndexDefinition>();
-        return Ok();
+        var response = await searchSvc.AutoCompleteSearch(request);
+        return HandleResponse(response);
     }
 }

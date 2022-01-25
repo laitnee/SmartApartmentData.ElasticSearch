@@ -19,6 +19,9 @@ public static class BootStrapInfrastructure
     private static void AddElasticSearch(IServiceCollection service, IConfiguration configuration)
     {
         var settings = new ConnectionSettings(new Uri(configuration["ElasticsearchSettings:uri"]));
+        settings.ThrowExceptions(alwaysThrow: true);
+        settings.DisableDirectStreaming();
+        settings.PrettyJson();
 
         var client = new ElasticClient(settings);
 

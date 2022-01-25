@@ -15,7 +15,6 @@ public class PropertyES : IndexItem
     [Text(Analyzer = ElasticSearchConstants.AutoCompleteAnalyzer, Name = nameof(FormerName))]
     public string StreetAddress { get; set; }
     
-    [Text(Analyzer = ElasticSearchConstants.KeywordAnalyzer, Name = nameof(City))]
     public string City { get; set; }
     
     [Text(Analyzer = ElasticSearchConstants.KeywordAnalyzer, Name = nameof(Market))]

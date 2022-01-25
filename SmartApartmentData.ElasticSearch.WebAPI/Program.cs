@@ -1,4 +1,5 @@
 using Serilog;
+using SmartApartmentData.ElasticSearch.Application;
 using SmartApartmentData.ElasticSearch.Infrastructure;
 using SmartApartmentData.ElasticSearch.WebAPI.Extensions;
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureLogs();
 builder.Host.UseSerilog();
+
+builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartApartmentData.ElasticSearch.Application;
 using SmartApartmentData.ElasticSearch.Application.Models;
 using SmartApartmentData.ElasticSearch.WebAPI.Attributes;
+using IResult = SmartApartmentData.ElasticSearch.Application.Models.IResult;
 
 namespace SmartApartmentData.ElasticSearch.WebAPI.Controllers.v1;
 
@@ -11,7 +12,7 @@ namespace SmartApartmentData.ElasticSearch.WebAPI.Controllers.v1;
 [ValidateRequest]
 public class BaseController : ControllerBase
 {
-    protected ActionResult<T> HandleResponse<T>(T result) where T : Result
+    protected ActionResult<T> HandleResponse<T>(T result) where T : IResult
     {
         return result.StatusCode switch
         {

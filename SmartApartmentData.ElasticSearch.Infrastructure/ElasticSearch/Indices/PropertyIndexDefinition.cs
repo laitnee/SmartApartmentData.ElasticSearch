@@ -19,14 +19,13 @@ public class PropertyIndexDefinition : IndexDefinition<PropertyES>, IIndexDefini
     public override async Task CreateIndexAsync(IElasticClient client)
     {
         var existResponse = await client.Indices.ExistsAsync(IndexName);
-        if (existResponse.IsValid && existResponse.Exists)
+        if (!existResponse.Exists)
         {
             var response = await client.Indices.CreateAsync(IndexName, c => c
                 .Settings(s => s.Analysis( a => a.
                     TokenFilters( tf => tf.Stop(ElasticSearchConstants.EnglishStopTokenFilter, sf => sf
                         .StopWords("_English_")            
                     ))
-                
                     .Tokenizers( tz => tz.
                         NGram(ElasticSearchConstants.AutoCompleteTokenizer, desc => desc
                             .MinGram(3)
@@ -34,9 +33,7 @@ public class PropertyIndexDefinition : IndexDefinition<PropertyES>, IIndexDefini
                             .TokenChars(new [] {TokenChar.Letter, TokenChar.Digit})
                         )
                     )
-                
                     .Analyzers( ca => ca
-                    
                         .Custom( ElasticSearchConstants.CustomStandardAnalyzer, csa => csa 
                             .Filters(ElasticSearchConstants.EnglishStopTokenFilter, "trim", "lowercase")
                             .Tokenizer("standard"))
@@ -52,14 +49,40 @@ public class PropertyIndexDefinition : IndexDefinition<PropertyES>, IIndexDefini
                     ))
                     
                 )
-                .Map<PropertyES>(m =>
-                    m.AutoMap<PropertyES>()));
-            logger.LogInformation(JsonSerializer.Serialize(response));
+                .Map<PropertyES>(m => m.AutoMap<PropertyES>()));
+            
             if (!response.IsValid) throw new Exception("error creating index property");
 
         }
         
     }
+
+    // private TypeMappingDescriptor<PropertyES> Mappings()
+    // {
+    //     return new TypeMappingDescriptor<PropertyES>()
+    //         .AutoMap<PropertyES>()
+    //         .Properties(p => p
+    //             .Text(t => t
+    //                 .Name(n => n.Name)
+    //                 .Analyzer(ElasticSearchConstants.AutoCompleteAnalyzer)
+    //             )
+    //             .Text(t => t
+    //                 .Name(n => n.FormerName)
+    //                 .Analyzer(ElasticSearchConstants.AutoCompleteAnalyzer)
+    //             )
+    //             .Text(t => t
+    //                 .Name(n => n.StreetAddress)
+    //                 .Analyzer(ElasticSearchConstants.AutoCompleteAnalyzer))
+    //             .Text(t => t
+    //                 .Name(n => n.Market)
+    //                 .Analyzer(ElasticSearchConstants.KeywordAnalyzer))
+    //             .Text(t => t
+    //                 .Name(n => n.State)
+    //                 .Analyzer(ElasticSearchConstants.KeywordAnalyzer))
+    //         );
+    //
+    //
+    // }
 
     public override async Task DeleteIndexAsync(IElasticClient client)
     {

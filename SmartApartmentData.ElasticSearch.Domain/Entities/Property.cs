@@ -1,6 +1,6 @@
 namespace SmartApartmentData.ElasticSearch.Domain.Entities;
 
-public class Property
+public class Property : BaseEntity
 {
     public int PropertyID { get; set; }
     public string Name { get; set; }

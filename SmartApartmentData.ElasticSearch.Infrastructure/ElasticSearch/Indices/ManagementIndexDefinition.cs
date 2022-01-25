@@ -18,7 +18,7 @@ public class ManagementIndexDefinition : IndexDefinition<ManagementES>, IIndexDe
     public override async Task CreateIndexAsync(IElasticClient client)
     {
         var existResponse = await client.Indices.ExistsAsync(IndexName);
-        if (existResponse.IsValid && existResponse.Exists)
+        if (!existResponse.Exists)
         {
             var response = await client.Indices.CreateAsync(IndexName, c => c
                 .Settings(s => s.Analysis(a => a.TokenFilters(tf =>
@@ -38,7 +38,7 @@ public class ManagementIndexDefinition : IndexDefinition<ManagementES>, IIndexDe
                             .Filters(ElasticSearchConstants.EnglishStopTokenFilter, "trim", "lowercase")
                             .Tokenizer("standard"))
 
-                        .Custom(ElasticSearchConstants.AutoCompleteTokenizer, csa => csa
+                        .Custom(ElasticSearchConstants.AutoCompleteAnalyzer, csa => csa
                             .Filters(ElasticSearchConstants.EnglishStopTokenFilter, "trim", "lowercase")
                             .Tokenizer(ElasticSearchConstants.AutoCompleteTokenizer))
 
