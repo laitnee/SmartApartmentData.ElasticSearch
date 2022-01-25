@@ -29,7 +29,7 @@ public class SearchController : BaseController
     /// </remarks>
     /// <param name="query"></param>
     /// <returns></returns>
-    [HttpGet]
+    [HttpGet("autocomplete")]
     [Produces("application/json")]
     public async Task<ActionResult<IResult<List<Dictionary<string,AutoCompleteResponse>>>>> AutoComplete([FromQuery]AutoCompleteSearchRequest request)
     {

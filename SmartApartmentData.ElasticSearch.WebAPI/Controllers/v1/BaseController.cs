@@ -8,7 +8,7 @@ namespace SmartApartmentData.ElasticSearch.WebAPI.Controllers.v1;
 
 
 [ApiController]
-[Route("v1/[controller]")]
+[Route("api/v1/[controller]")]
 [ValidateRequest]
 public class BaseController : ControllerBase
 {
