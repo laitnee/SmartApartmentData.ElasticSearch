@@ -18,7 +18,7 @@ public class ManagementIndexDefinition : IndexDefinition<ManagementES>, IIndexDe
     public override async Task CreateIndexAsync(IElasticClient client)
     {
         var existResponse = await client.Indices.ExistsAsync(IndexName);
-        if (existResponse.Exists)
+        if (existResponse.IsValid && existResponse.Exists)
         {
             var response = await client.Indices.CreateAsync(IndexName, c => c
                 .Settings(s => s.Analysis(a => a.TokenFilters(tf =>
@@ -51,14 +51,19 @@ public class ManagementIndexDefinition : IndexDefinition<ManagementES>, IIndexDe
                     m.AutoMap<ManagementES>()));
 
 
-            if (response.ServerError.Error != null)
+            if (response.IsValid)
                 logger.LogInformation("Error occured while trying to index on servier");
         }
     }
 
 
-    public override Task DeleteIndexAsync(IElasticClient client)
+    public override async Task DeleteIndexAsync(IElasticClient client)
     {
-        throw new NotImplementedException();
+        var existResponse = await client.Indices.ExistsAsync(IndexName);
+        if (existResponse.IsValid && existResponse.Exists)
+        {
+           var response = await client.Indices.DeleteAsync(this.IndexName);
+           if (!response.IsValid) throw new Exception("Error Deleting Index");
+        }
     }
 }

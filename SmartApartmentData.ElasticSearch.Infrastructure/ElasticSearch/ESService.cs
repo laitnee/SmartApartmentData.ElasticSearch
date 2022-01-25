@@ -34,4 +34,12 @@ public class ESService : IESService
         var indexDefinition = (TDefinition) Activator.CreateInstance(typeof(TDefinition), new Object[]{logger});
         await indexDefinition.AddDocumentToIndexAsync<T>(client, documents);
     }
+
+    public async Task DeleteIndexAsync<T>() where T : IIndexDefinition
+    {
+        logger.LogInformation("Deleting Index Started");
+        var indexDefinition = (T) Activator.CreateInstance(typeof(T), new Object[]{logger})!;
+        await indexDefinition.DeleteIndexAsync(client);
+        logger.LogInformation("Deleting Successful");
+    }
 }

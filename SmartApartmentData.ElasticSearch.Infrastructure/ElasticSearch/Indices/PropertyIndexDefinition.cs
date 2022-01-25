@@ -19,7 +19,7 @@ public class PropertyIndexDefinition : IndexDefinition<PropertyES>, IIndexDefini
     public override async Task CreateIndexAsync(IElasticClient client)
     {
         var existResponse = await client.Indices.ExistsAsync(IndexName);
-        if (existResponse.Exists)
+        if (existResponse.IsValid && existResponse.Exists)
         {
             var response = await client.Indices.CreateAsync(IndexName, c => c
                 .Settings(s => s.Analysis( a => a.
@@ -61,8 +61,13 @@ public class PropertyIndexDefinition : IndexDefinition<PropertyES>, IIndexDefini
         
     }
 
-    public override Task DeleteIndexAsync(IElasticClient client)
+    public override async Task DeleteIndexAsync(IElasticClient client)
     {
-        throw new NotImplementedException();
+        var existResponse = await client.Indices.ExistsAsync(IndexName);
+        if (existResponse.IsValid && existResponse.Exists)
+        {
+            var response = await client.Indices.DeleteAsync(this.IndexName);
+            if (!response.IsValid) throw new Exception("Error Deleting Index");
+        }
     }
 }

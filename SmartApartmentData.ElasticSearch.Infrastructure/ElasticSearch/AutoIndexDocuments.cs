@@ -45,9 +45,11 @@ public class AutoIndexDocuments : BackgroundService
     private async Task CreateIndexesAsync(IESService esService)
     {
         logger.LogInformation("Indexing Property...");
+        await esService.DeleteIndexAsync<PropertyIndexDefinition>();
         await esService.CreateIndexAsync<PropertyIndexDefinition>();
         
         logger.LogInformation("Indexing Management...");
+        await esService.DeleteIndexAsync<ManagementIndexDefinition>();
         await esService.CreateIndexAsync<ManagementIndexDefinition>();
     }
 
