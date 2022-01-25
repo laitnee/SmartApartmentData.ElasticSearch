@@ -29,9 +29,9 @@ public class ESService : IESService
     }
     
 
-    public async Task AddDocumentAsync<TDefinition,TItem>(List<TItem> documents) where TDefinition : IIndexDefinition, new() where TItem : IndexItem
+    public async Task AddDocumentAsync<TDefinition, T>(List<T> documents) where TDefinition : IIndexDefinition where T : IndexItem
     {
-        var indexDefinition = (TDefinition) Activator.CreateInstance(typeof(TDefinition))!;
-        await indexDefinition.AddDocumentToIndexAsync<TItem>(client, documents);
+        var indexDefinition = (TDefinition) Activator.CreateInstance(typeof(TDefinition), new Object[]{logger});
+        await indexDefinition.AddDocumentToIndexAsync<T>(client, documents);
     }
 }

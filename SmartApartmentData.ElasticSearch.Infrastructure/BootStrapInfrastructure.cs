@@ -10,7 +10,11 @@ public static class BootStrapInfrastructure
     public static void AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
     {
         AddElasticSearch(service, configuration);
-        service.AddTransient<IESService, ESService>();
+        
+        service.AddHostedService<AutoIndexDocuments>();
+
+        service.AddScoped<IESService, ESService>();
+        
     }
     private static void AddElasticSearch(IServiceCollection service, IConfiguration configuration)
     {

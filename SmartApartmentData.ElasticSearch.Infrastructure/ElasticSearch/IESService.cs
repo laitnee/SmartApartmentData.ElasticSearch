@@ -8,5 +8,5 @@ public interface IESService
     Task SearchAsync();
     Task CreateIndexAsync<T>() where T : IIndexDefinition;
 
-    Task AddDocumentAsync<TDefinition,TItem>(List<TItem> documents) where TDefinition : IIndexDefinition, new() where TItem : IndexItem;
+    Task AddDocumentAsync<TDefinition, T>(List<T> documents) where TDefinition : IIndexDefinition where T : IndexItem;
 }

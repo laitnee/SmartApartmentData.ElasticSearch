@@ -22,4 +22,9 @@
       <ProjectReference Include="..\SmartApartmentData.ElasticSearch.Infrastructure\SmartApartmentData.ElasticSearch.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="mgmt.json" />
+      <None Include="properties.json" />
+    </ItemGroup>
+
 </Project>

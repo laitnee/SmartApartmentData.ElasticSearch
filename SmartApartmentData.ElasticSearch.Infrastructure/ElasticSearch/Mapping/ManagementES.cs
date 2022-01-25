@@ -1,8 +1,9 @@
 using Nest;
+using SmartApartmentData.ElasticSearch.Domain.Entities;
 
 namespace SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch.Mapping;
 
-[ElasticsearchType(IdProperty = nameof(ManagementES.ManagementID), Name = nameof(ManagementES))]
+[ElasticsearchType(IdProperty = nameof(ManagementES.ManagementID), RelationName = nameof(ManagementES))]
 public class ManagementES : IndexItem
 {
     public int ManagementID { get; set; }
@@ -15,4 +16,15 @@ public class ManagementES : IndexItem
 
     [Text(Analyzer = ElasticSearchConstants.KeywordAnalyzer, Name = nameof(State))]
     public string State { get; set; }
+
+    internal static ManagementES Map(Management management)
+    {
+        return new ManagementES()
+        {
+            ManagementID = management.ManagementID,
+            Name = management.Name,
+            Market = management.Market,
+            State = management.State
+        };
+    }
 }

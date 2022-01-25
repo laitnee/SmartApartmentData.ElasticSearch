@@ -9,5 +9,7 @@ public static class ElasticSearchConstants
     public const string KeywordAnalyzer = "KeywordAnalyzer";
     public const string AutoCompleteAnalyzer = "AutoCompleteAnalyzer";
     public const string CustomStandardAnalyzer = "CustomStandardAnalyzer";
+    public const string ManagementFilePath = "mgmt.json";
+    public const string PropertiesFilePath = "properties.json";
 
 }

@@ -22,7 +22,7 @@ public abstract class IndexDefinition<T> : IIndexDefinition where T : IndexItem
     {
         if (documents.Any())
         {
-            var response = await client.IndexManyAsync<T>(documents);
+            var response = await client.IndexManyAsync(documents, this.IndexName);
             if (response.Errors) 
             {
                 foreach (var itemWithError in response.ItemsWithErrors) 

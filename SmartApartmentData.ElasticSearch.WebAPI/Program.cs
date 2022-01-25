@@ -1,3 +1,4 @@
+using Serilog;
 using SmartApartmentData.ElasticSearch.Infrastructure;
 using SmartApartmentData.ElasticSearch.WebAPI.Extensions;
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Configure Services
 
 builder.Services.ConfigureLogs();
+builder.Host.UseSerilog();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 

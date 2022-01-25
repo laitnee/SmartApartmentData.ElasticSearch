@@ -3,7 +3,7 @@ using SmartApartmentData.ElasticSearch.Domain.Entities;
 
 namespace SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch.Mapping;
 
-[ElasticsearchType(IdProperty = nameof(PropertyES.PropertyID), Name = nameof(PropertyES))]
+[ElasticsearchType(IdProperty = nameof(PropertyES.PropertyID), RelationName = nameof(PropertyES))]
 public class PropertyES : IndexItem
 {
     public int PropertyID { get; set; }
