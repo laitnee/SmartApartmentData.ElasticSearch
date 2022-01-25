@@ -25,7 +25,7 @@ Market
 State
 : This allows you scope your search a particular state
 
-![alt text](snapshot.png)
+![swagger doc image](snapshot.png)
 
 **Sample curl Request for endpoint**
 ```
