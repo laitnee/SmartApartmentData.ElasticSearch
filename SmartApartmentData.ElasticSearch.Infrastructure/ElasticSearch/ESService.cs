@@ -103,23 +103,21 @@ public class ESService : IESService
             query = query && new QueryContainerDescriptor<PropertyES>()
                 .Term(t => t.State, req.State.ToLower());
         
-        query = query || new QueryContainerDescriptor<ManagementES>()
-            .MultiMatch(mm => mm
-                .Fields( f => f
+        var query_mag = new QueryContainerDescriptor<ManagementES>()
+            .Match(mm => mm
                     .Field(f => f.Name.ToLower())
-                )
-                .Query(req.SearchPhrase));
+                    .Query(req.SearchPhrase));
 
         if (!String.IsNullOrWhiteSpace(req.Market))
-            query = query && new QueryContainerDescriptor<ManagementES>()
+            query_mag = query_mag && new QueryContainerDescriptor<ManagementES>()
                 .Term(t => t.Market, req.Market.ToLower());
 
 
 
         if (!String.IsNullOrWhiteSpace(req.State))
-            query = query && new QueryContainerDescriptor<ManagementES>()
+            query_mag = query_mag && new QueryContainerDescriptor<ManagementES>()
                 .Term(t => t.State, req.State.ToLower());
 
-        return query;
+        return query || query_mag;
     }
 }

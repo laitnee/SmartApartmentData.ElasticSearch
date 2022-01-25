@@ -12,7 +12,7 @@ public class PropertyES : IndexItem
     [Text(Analyzer = ElasticSearchConstants.AutoCompleteAnalyzer, Name = nameof(FormerName))]
     public string FormerName { get; set; }
     
-    [Text(Analyzer = ElasticSearchConstants.AutoCompleteAnalyzer, Name = nameof(FormerName))]
+    [Text(Analyzer = ElasticSearchConstants.AutoCompleteAnalyzer, Name = nameof(StreetAddress))]
     public string StreetAddress { get; set; }
     
     public string City { get; set; }

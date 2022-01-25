@@ -14,6 +14,4 @@ public interface IESService
     Task DeleteIndexAsync<T>() where T : IIndexDefinition;
 
     Task<List<IndexItemResponse>> SearchAsync(SMAutoCompleteSearchRequest req);
-
-
 }
