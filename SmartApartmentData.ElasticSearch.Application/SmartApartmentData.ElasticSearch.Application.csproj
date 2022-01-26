@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Elasticsearch.Net.Aws" Version="7.1.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.2-mauipre.1.22054.8" />
     </ItemGroup>
 

@@ -27,9 +27,11 @@ public static class LoggingExtension
 
     public static ElasticsearchSinkOptions ConfigureEls(IConfiguration configuration, string env)
     {
-        return new ElasticsearchSinkOptions(new Uri(configuration["ELK_local_Configuration:Uri"])){
+        return new ElasticsearchSinkOptions(new Uri(configuration["ElasticsearchSettings:Uri"])){
             AutoRegisterTemplate = true,
-            IndexFormat = $"{Assembly.GetExecutingAssembly().GetName()?.Name?.ToLower()}-{env.ToLower().Replace(".","-")}-{DateTime.UtcNow:yyyy-MM}"
+            IndexFormat = $"{Assembly.GetExecutingAssembly().GetName()?.Name?.ToLower()}-{env.ToLower().Replace(".","-")}-{DateTime.UtcNow:yyyy-MM}",
+            ModifyConnectionSettings = cs => cs.BasicAuthentication(configuration["ElasticsearchSettings:Username"],
+                configuration["ElasticsearchSettings:Password"])
         };
     }
 }

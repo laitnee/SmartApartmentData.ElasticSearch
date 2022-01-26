@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Elasticsearch.Net.Aws;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
 using SmartApartmentData.ElasticSearch.Infrastructure.ElasticSearch;
@@ -18,9 +19,18 @@ public static class BootStrapInfrastructure
     }
     private static void AddElasticSearch(IServiceCollection service, IConfiguration configuration)
     {
-        var settings = new ConnectionSettings(new Uri(configuration["ElasticsearchSettings:uri"]));
+        // var options = configuration.GetAWSOptions();
+        // var httpConnection = new AwsHttpConnection(options);
+        //
+        var settings = new ConnectionSettings(new Uri(configuration["ElasticsearchSettings:Uri"]));
+        
+        settings.BasicAuthentication(configuration["ElasticsearchSettings:Username"],
+            configuration["ElasticsearchSettings:Password"]);
+        
         settings.ThrowExceptions(alwaysThrow: true);
+        
         settings.DisableDirectStreaming();
+        
         settings.PrettyJson();
 
         var client = new ElasticClient(settings);

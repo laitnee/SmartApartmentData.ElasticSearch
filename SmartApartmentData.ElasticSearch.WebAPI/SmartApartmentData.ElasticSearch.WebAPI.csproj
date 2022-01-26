@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Elasticsearch.Net.Aws" Version="7.1.0" />
         <PackageReference Include="Serilog.Aspnetcore" Version="4.1.0" />
         <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
         <PackageReference Include="Serilog.Exceptions" Version="8.0.0" />

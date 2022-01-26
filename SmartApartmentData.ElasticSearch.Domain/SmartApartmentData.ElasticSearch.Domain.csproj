@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Elasticsearch.Net" Version="7.10.0" />
+      <PackageReference Include="Elasticsearch.Net.Aws" Version="7.1.0" />
+    </ItemGroup>
+
 </Project>

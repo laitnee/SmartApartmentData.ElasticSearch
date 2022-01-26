@@ -16,7 +16,10 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7171;http://localhost:5265",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ElasticsearchSettings:Uri": "https://search-smart-apartment-data-7q7ra3lvoamsmbh7ubl5jok2oq.us-east-2.es.amazonaws.com/",
+        "ElasticsearchSettings:Username": "smartdata",
+        "ElasticsearchSettings:Password": "SmartData@1"
       }
     },
     "IIS Express": {
