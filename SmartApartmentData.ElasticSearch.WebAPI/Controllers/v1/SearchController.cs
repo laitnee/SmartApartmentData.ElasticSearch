@@ -31,9 +31,9 @@ public class SearchController : BaseController
     /// <returns></returns>
     [HttpGet("autocomplete")]
     [Produces("application/json")]
-    public async Task<ActionResult<IResult<List<Dictionary<string,AutoCompleteResponse>>>>> AutoComplete([FromQuery]AutoCompleteSearchRequest request)
+    public async Task<ActionResult> AutoComplete([FromQuery]AutoCompleteSearchRequest request)
     {
         var response = await searchSvc.AutoCompleteSearch(request);
-        return HandleResponse(response);
+        return ConvertToActionResult(response);
     }
 }

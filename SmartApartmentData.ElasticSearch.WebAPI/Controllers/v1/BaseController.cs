@@ -12,7 +12,7 @@ namespace SmartApartmentData.ElasticSearch.WebAPI.Controllers.v1;
 [ValidateRequest]
 public class BaseController : ControllerBase
 {
-    protected ActionResult<T> HandleResponse<T>(T result) where T : IResult
+    protected ActionResult ConvertToActionResult<T>(T result) where T : IResult
     {
         return result.StatusCode switch
         {
